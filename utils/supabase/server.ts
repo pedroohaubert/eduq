@@ -1,16 +1,16 @@
 import { createServerClient, type CookieOptions } from '@supabase/ssr'
-import { cookies } from 'next/headers'
+import { cookies, type UnsafeUnwrappedCookies } from 'next/headers';
 
-export function createClient() {
-    const cookieStore = cookies()
+export async function createClient() {
+    const cookieStore = (await cookies() as unknown as UnsafeUnwrappedCookies)
 
-    return createServerClient(
+    return await createServerClient(
         process.env.NEXT_PUBLIC_SUPABASE_URL!,
         process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
         {
-            cookies: {
-                getAll() {
-                    return cookieStore.getAll()
+            cookies: {  
+                async getAll() {
+                    return await cookieStore.getAll()
                 },
                 setAll(cookiesToSet) {
                     try {

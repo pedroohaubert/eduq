@@ -1,8 +1,12 @@
+
 "use client"
+
+import { useActionState } from "react";
+
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { useFormState } from 'react-dom'
+import 'react-dom';
 import { useFormStatus } from 'react-dom'
 import { signup } from '@/app/auth/actions'
 
@@ -11,7 +15,7 @@ export default function SignupForm() {
         message: ''
     }
 
-    const [formState, formAction] = useFormState(signup, initialState)
+    const [formState, formAction] = useActionState(signup, initialState)
     const { pending } = useFormStatus()
 
     return (
