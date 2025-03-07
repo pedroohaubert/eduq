@@ -1,4 +1,4 @@
-import { Bell, Menu, Search } from "lucide-react"
+import { Bell, Search } from "lucide-react"
 import Link from "next/link"
 
 import { Button } from "@/components/ui/button"
@@ -10,6 +10,8 @@ import { Badge } from "@/components/ui/badge"
 import { getStripePlan } from "@/utils/stripe/api"
 import { Suspense } from "react"
 import { Skeleton } from "@/components/ui/skeleton"
+import { ThemeToggle } from "@/components/ui/theme-toggle"
+import { MobileNav } from "./MobileNav"
 
 export default async function DashboardHeader() {
     const supabase = await createClient()
@@ -42,10 +44,11 @@ export default async function DashboardHeader() {
                         </Link>
                     </nav>
                 </div>
-                <Button variant="outline" size="icon" className="mr-2 md:hidden">
-                    <Menu className="h-5 w-5" />
-                    <span className="sr-only">Toggle Menu</span>
-                </Button>
+                
+                <Suspense fallback={<Button variant="outline" size="icon" className="mr-2 md:hidden"><Skeleton className="h-5 w-5 rounded" /></Button>}>
+                    <MobileNav stripePlan={stripePlan} />
+                </Suspense>
+
                 <div className="flex flex-1 items-center justify-between space-x-2 md:justify-end">
                     <div className="w-full flex-1 md:w-auto md:flex-none">
                         <form>
@@ -59,7 +62,10 @@ export default async function DashboardHeader() {
                             </div>
                         </form>
                     </div>
-                    <DashboardHeaderProfileDropdown />
+                    <div className="flex items-center gap-2">
+                        <ThemeToggle />
+                        <DashboardHeaderProfileDropdown />
+                    </div>
                 </div>
             </div>
         </header>

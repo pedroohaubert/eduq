@@ -1,24 +1,34 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter as FontSans } from "next/font/google";
+import { ThemeProvider } from '@/components/theme-provider'
+import { cn } from "@/lib/utils"
 import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "SAAS Starter Kit",
-  description: "SAAS Starter Kit with Stripe, Supabase, Postgres",
+  title: "Eduq",
+  description: "Impulsionando a educação com inteligência artificial",
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: {
+  children: React.ReactNode
+}) {
   return (
-    <html lang="en">
-      {/* Required for pricing table */}
-      <script async src="https://js.stripe.com/v3/pricing-table.js"></script>
-      <body className={inter.className}>{children}</body>
+    <html lang="en" suppressHydrationWarning>
+      <body className={cn(
+        "min-h-screen bg-background antialiased",
+      )} style={{ fontFamily: "Georgia, serif" }}>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          enableSystem
+          disableTransitionOnChange
+        >
+          {children}
+        </ThemeProvider>
+      </body>
     </html>
-  );
+  )
 }

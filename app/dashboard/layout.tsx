@@ -35,9 +35,9 @@ export default async function DashboardLayout({
 
 
     return (
-        <html lang="en">
+        <>
             <DashboardHeader />
-            {children}
-        </html>
+            <main className="container py-6 px-4 md:px-6">{children}</main>
+        </>
     );
 }

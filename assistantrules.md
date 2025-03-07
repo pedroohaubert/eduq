@@ -1,0 +1,1 @@
+utilize sempre a paleta de cores do global css com o tailwind
