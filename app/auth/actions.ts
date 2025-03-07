@@ -126,7 +126,7 @@ export async function loginUser(currentState: { message: string }, formData: For
 export async function logout() {
     const supabase = await createClient()
     const { error } = await supabase.auth.signOut()
-    redirect('/login')
+    redirect('/')
 }
 
 export async function signInWithGoogle() {

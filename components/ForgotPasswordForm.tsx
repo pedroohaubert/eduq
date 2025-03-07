@@ -12,16 +12,26 @@ export default function ForgotPasswordForm() {
     return (<>
         <form action={formAction}>
             <div className="grid gap-2">
-                <Label htmlFor="email">Email</Label>
+                <Label htmlFor="email">E-mail</Label>
                 <Input
                     id="email"
                     type="email"
-                    placeholder="m@example.com"
+                    placeholder="seu@email.com"
                     name="email"
                     required
                 />
             </div>
-            <Button className="w-full mt-4" type="submit">Reset Password</Button>
+            <button
+                type="submit"
+                className="w-full mt-4 p-2 rounded-md cursor-pointer transition-all duration-500 ease-in-out"
+                style={{
+                    background: 'linear-gradient(to right, #ff4d79, #ff6b8b)',
+                    border: 'none',
+                    color: 'white'
+                }}
+            >
+                Redefinir Senha
+            </button>
             {formState?.message && (
                 <p className="text-sm text-red-500 text-center py-2">{formState.message}</p>
             )}

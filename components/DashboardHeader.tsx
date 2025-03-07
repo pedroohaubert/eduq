@@ -10,8 +10,6 @@ import { Badge } from "@/components/ui/badge"
 import { getStripePlan } from "@/utils/stripe/api"
 import { Suspense } from "react"
 import { Skeleton } from "@/components/ui/skeleton"
-import { ThemeToggle } from "@/components/ui/theme-toggle"
-import { MobileNav } from "./MobileNav"
 
 export default async function DashboardHeader() {
     const supabase = await createClient()
@@ -46,7 +44,6 @@ export default async function DashboardHeader() {
                 </div>
                 
                 <Suspense fallback={<Button variant="outline" size="icon" className="mr-2 md:hidden"><Skeleton className="h-5 w-5 rounded" /></Button>}>
-                    <MobileNav stripePlan={stripePlan} />
                 </Suspense>
 
                 <div className="flex flex-1 items-center justify-between space-x-2 md:justify-end">
@@ -63,7 +60,6 @@ export default async function DashboardHeader() {
                         </form>
                     </div>
                     <div className="flex items-center gap-2">
-                        <ThemeToggle />
                         <DashboardHeaderProfileDropdown />
                     </div>
                 </div>

@@ -20,18 +20,18 @@ export default function ResetPasswordForm() {
     return (<>
         <form action={formAction}>
             <div className="grid gap-2">
-                <Label htmlFor="email">Password</Label>
+                <Label htmlFor="email">Senha</Label>
                 <Input
                     id="password"
                     type="password"
-                    placeholder="Enter New Password"
+                    placeholder="Digite Nova Senha"
                     name="password"
                     required
                 />
                 <Input
                     id="confirm_password"
                     type="password"
-                    placeholder="Confirm Password"
+                    placeholder="Confirme a Senha"
                     name="confirm_password"
                     required
                 />
@@ -39,7 +39,17 @@ export default function ResetPasswordForm() {
                     <GetCodeHiddenInput />
                 </Suspense>
             </div>
-            <Button className="w-full mt-4" type="submit">Update Password</Button>
+            <button
+                className="w-full mt-4 p-2 rounded-md cursor-pointer transition-all duration-500 ease-in-out"
+                style={{
+                    background: 'linear-gradient(to right, #ff4d79, #ff6b8b)',
+                    border: 'none',
+                    color: 'white'
+                }}
+                type="submit"
+            >
+                Atualizar Senha
+            </button>
             {formState?.message && (
                 <p className="text-sm text-red-500 text-center py-2">{formState.message}</p>
             )}

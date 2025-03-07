@@ -6,7 +6,12 @@ import { useEffect, useState } from 'react';
 import { ArrowDownToDot, ArrowRight, BookCheck, LogIn, Moon, Sun } from 'lucide-react';
 import { useTheme } from 'next-themes';
 import Link from 'next/link';
-
+import { Dialog, DialogContent, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { LoginForm } from '@/components/LoginForm';
+import { SignupForm } from '@/components/SignupForm';
+import { AuthDialog } from '@/components/AuthDialog';
+ 
 // Removed revalidate directive as it's not compatible with client components
 
 export default function LandingPage() {
@@ -34,12 +39,7 @@ export default function LandingPage() {
           <Moon className="absolute h-5 w-5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
           <span className="sr-only">Toggle theme</span>
         </Button>
-        <Link href="/login">
-          <Button variant="outline" size="sm" className="gap-1">
-            <LogIn className="h-4 w-4" />
-            <span>Entrar</span>
-          </Button>
-        </Link>
+        <AuthDialog />
       </header>
 
       <main className="flex flex-1 flex-col items-center justify-center">
@@ -56,24 +56,6 @@ export default function LandingPage() {
         </p>
 
         <div className='flex flex-col px-2 items-center justify-center'>
-          <Link href="/login">
-            <div
-              className='group flex items-center px-8 gap-2 p-3 cursor-pointer rounded-full animate-pulse-border transition-all duration-500 ease-in-out'
-              style={{
-                border: 'none',
-                background: 'linear-gradient(to right, #ff4d79, #ff6b8b)',
-                boxShadow: '0 0 12px rgba(255, 77, 121, 0.5)',
-                position: 'relative',
-                zIndex: 1,
-                backgroundSize: '200% 100%',
-              }}
-            >
-              <div className="absolute inset-0 rounded-full bg-background group-hover:bg-transparent m-[2px] z-[-1] transition-all duration-500 box-border"></div>
-              <p className='text-xl group-hover:text-white transition-colors duration-500'>crie sua prova agora</p>
-              <BookCheck className="w-5 h-5 group-hover:text-white transition-colors duration-500" />
-            </div>
-          </Link>
-
           <style jsx global>{`
             @keyframes pulseBorder {
               0% {
@@ -92,26 +74,25 @@ export default function LandingPage() {
             .animate-pulse-border {
               animation: pulseBorder 5s ease-in-out infinite;
             }
-            
-            @keyframes logoGlow {
-              0% {
-                filter: drop-shadow(0 0 8px rgba(66, 153, 225, 0.4));
-              }
-              50% {
-                filter: drop-shadow(0 0 15px rgba(66, 153, 225, 0.7));
-              }
-              100% {
-                filter: drop-shadow(0 0 8px rgba(66, 153, 225, 0.4));
-              }
-            }
-            .animate-logo-glow {
-              animation: logoGlow 6s ease-in-out infinite;
-            }
-            
-
           `}</style>
+          <AuthDialog>
+            <div
+              className='group flex items-center px-8 gap-2 p-3 cursor-pointer rounded-full animate-pulse-border transition-all duration-500 ease-in-out'
+              style={{
+                border: 'none',
+                background: 'linear-gradient(to right, #ff4d79, #ff6b8b)',
+                boxShadow: '0 0 12px rgba(255, 77, 121, 0.5)',
+                position: 'relative',
+                zIndex: 1,
+                backgroundSize: '200% 100%'
+              }}
+            >
+              <div className="absolute inset-0 rounded-full bg-background group-hover:bg-transparent m-[2px] z-[-1] transition-all duration-500 box-border"></div>
+              <p className='text-xl group-hover:text-white transition-colors duration-500'>Comece Agora</p>
+              <BookCheck className="w-5 h-5 group-hover:text-white transition-colors duration-500" />
+            </div>
+          </AuthDialog>
         </div>
-
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-16 max-w-4xl">
           {[
             { title: "Assistente inteligente", description: "Converse com a IA para criar provas personalizadas com questões relevantes e diversificadas" },

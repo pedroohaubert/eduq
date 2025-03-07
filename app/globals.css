@@ -22,7 +22,7 @@
     --destructive-foreground: #FFFFFF; /* Texto em ações destrutivas - branco */
     --border: #BFBFBF; /* Cor de borda neutra - cinza médio-claro */
     --input: #E0E0E0; /* Fundo/borda de inputs - cinza claro */
-    --ring: #FF0037; /* Cor do anel de foco - vermelho principal */
+    --ring: #A0A0A0; /* Cor do anel de foco - cinza suave */
     --radius: 0.5rem; /* Raio de borda para cantos arredondados */
   }
 
@@ -45,8 +45,12 @@
     --destructive-foreground: #FFFFFF; /* Texto em ações destrutivas no modo escuro - branco */
     --border: #4D4D4D; /* Cor de borda neutra no modo escuro - cinza médio-escuro */
     --input: #4D4D4D; /* Fundo/borda de inputs no modo escuro (mesmo que borda) */
-    --ring: #FF0037; /* Cor do anel de foco no modo escuro (mesmo tom) */
+    --ring: #666666; /* Cor do anel de foco no modo escuro - cinza médio */
   }
+}
+
+*{
+  transition: all 0.3s ease
 }
 
 @layer base {
