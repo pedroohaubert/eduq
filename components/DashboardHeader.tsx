@@ -22,32 +22,23 @@ export default async function DashboardHeader() {
             <div className="container flex h-14 max-w-screen-2xl items-center">
                 <div className="mr-4 hidden md:flex">
                     <Link className="mr-2 flex items-center space-x-2" href="">
-                        <Image src="/logo.png" alt="logo" width={25} height={25} />
+                        <Image src="/eduq.svg" alt="logo" width={25} height={25} />
                     </Link>
-                    <Suspense fallback={<Badge variant="outline" className="mr-2"><Skeleton className="w-[50px] h-[20px] rounded-full" /></Badge>}>
-                        <Badge variant="outline" className="mr-2">{stripePlan}</Badge>
-                    </Suspense>
-                    <nav className="flex items-center space-x-6 text-sm font-medium">
+                    <nav className="flex ml-2 items-center space-x-6 text-sm font-medium">
                         <Link className="transition-colors hover:text-foreground/80 text-foreground" href="#">
-                            Home
+                            Inicio
                         </Link>
                         <Link className="transition-colors hover:text-foreground/80 text-foreground/60" href="#">
-                            Projects
-                        </Link>
-                        <Link className="transition-colors hover:text-foreground/80 text-foreground/60" href="#">
-                            Tasks
-                        </Link>
-                        <Link className="transition-colors hover:text-foreground/80 text-foreground/60" href="#">
-                            Reports
+                            Provas
                         </Link>
                     </nav>
                 </div>
-                
+
                 <Suspense fallback={<Button variant="outline" size="icon" className="mr-2 md:hidden"><Skeleton className="h-5 w-5 rounded" /></Button>}>
                 </Suspense>
 
                 <div className="flex flex-1 items-center justify-between space-x-2 md:justify-end">
-                    <div className="w-full flex-1 md:w-auto md:flex-none">
+                    {/* <div className="w-full flex-1 md:w-auto md:flex-none">
                         <form>
                             <div className="relative">
                                 <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
@@ -58,8 +49,11 @@ export default async function DashboardHeader() {
                                 />
                             </div>
                         </form>
-                    </div>
+                    </div> */}
                     <div className="flex items-center gap-2">
+                        <Suspense fallback={<Badge variant="outline" className="mr-2"><Skeleton className="w-[50px] h-[20px] rounded-full" /></Badge>}>
+<Badge variant="outline" className="mr-2">{(await stripePlan)?.split(' ').slice(1).map((word, index) => index === 0 ? word.charAt(0).toUpperCase() + word.slice(1) : word).join(' ')}</Badge>
+                        </Suspense>
                         <DashboardHeaderProfileDropdown />
                     </div>
                 </div>
