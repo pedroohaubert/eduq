@@ -10,13 +10,14 @@ import { Dialog, DialogContent, DialogTitle, DialogTrigger } from '@/components/
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { LoginForm } from '@/components/LoginForm';
 import { SignupForm } from '@/components/SignupForm';
+import { ThemeToggle } from '@/components/ThemeToggle';
 import { AuthDialog } from '@/components/AuthDialog';
  
 // Removed revalidate directive as it's not compatible with client components
 
 export default function LandingPage() {
   const [products, setProducts] = useState<StripeProduct[]>([]);
-  const { theme, setTheme } = useTheme();
+  
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -29,16 +30,7 @@ export default function LandingPage() {
   return (
     <div className="flex min-h-[100dvh] flex-col items-center">
       <header className="w-full flex justify-end items-center p-4 gap-2">
-        <Button
-          variant="ghost"
-          size="icon"
-          onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-          className="rounded-full"
-        >
-          <Sun className="h-5 w-5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-          <Moon className="absolute h-5 w-5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
-          <span className="sr-only">Toggle theme</span>
-        </Button>
+        <ThemeToggle />
         <AuthDialog />
       </header>
 

@@ -8,6 +8,9 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "Eduq",
   description: "Impulsionando a educação com inteligência artificial",
+  icons: {
+    icon: '/eduq.svg',
+  },
 };
 
 export default function RootLayout({

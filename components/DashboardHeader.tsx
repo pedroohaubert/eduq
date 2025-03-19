@@ -1,6 +1,6 @@
 import { Bell, Search } from "lucide-react"
 import Link from "next/link"
-
+import { Moon, Sun } from 'lucide-react';
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import Image from 'next/image'
@@ -10,6 +10,7 @@ import { Badge } from "@/components/ui/badge"
 import { getStripePlan } from "@/utils/stripe/api"
 import { Suspense } from "react"
 import { Skeleton } from "@/components/ui/skeleton"
+import { ThemeToggle } from '@/components/ThemeToggle'
 
 export default async function DashboardHeader() {
     const supabase = await createClient()
@@ -51,8 +52,9 @@ export default async function DashboardHeader() {
                         </form>
                     </div> */}
                     <div className="flex items-center gap-2">
+                        <ThemeToggle />
                         <Suspense fallback={<Badge variant="outline" className="mr-2"><Skeleton className="w-[50px] h-[20px] rounded-full" /></Badge>}>
-<Badge variant="outline" className="mr-2">{(await stripePlan)?.split(' ').slice(1).map((word, index) => index === 0 ? word.charAt(0).toUpperCase() + word.slice(1) : word).join(' ')}</Badge>
+                            <Badge variant="outline" className="mr-2">{(await stripePlan)?.split(' ').slice(1).map((word, index) => index === 0 ? word.charAt(0).toUpperCase() + word.slice(1) : word).join(' ')}</Badge>
                         </Suspense>
                         <DashboardHeaderProfileDropdown />
                     </div>
